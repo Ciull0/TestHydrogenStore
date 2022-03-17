@@ -19,18 +19,28 @@ import Welcome from '../components/Welcome.server';
 import {Suspense} from 'react';
 
 export default function Index({country = {isoCode: 'US'}}) {
+  const {data} = useShopQuery({
+    query: QUERY,
+    variables: {
+      country: country.isoCode,
+    },
+    preload: true,
+  });
+  const collectionsTest = data ? flattenConnection(data.collections) : [];
+  const collectionTest =
+    collectionsTest && collectionsTest.length > 1 ? collectionsTest[1] : collectionsTest[0];
+
   return (
     <Layout hero={<GradientBackground />}>
       <Suspense fallback={null}>
         <SeoForHomepage />
       </Suspense>
       <div className="relative mb-12">
-        <Welcome />
         <Suspense fallback={<BoxFallback />}>
           <FeaturedProductsBox country={country} />
         </Suspense>
         <Suspense fallback={<BoxFallback />}>
-          <FeaturedCollectionBox country={country} />
+          <FeaturedCollection collection={collectionTest} />
         </Suspense>
       </div>
     </Layout>

@@ -1,5 +1,5 @@
 export default {
-  storeDomain: 'hydrogen-preview.myshopify.com',
-  storefrontToken: '3b580e70970c4528da70c98e097c2fa0',
+  storeDomain: 'danieleciulli.myshopify.com',
+  storefrontToken: '7b78c50f55dfe48dd3a173b03f506588',
   storefrontApiVersion: '2022-04',
 };
